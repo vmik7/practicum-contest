@@ -1,0 +1,36 @@
+.menuWrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 14px;
+    padding: 8px 0;
+    background-color: #fff;
+    width: 100%;
+    max-width: 260px;
+    filter: drop-shadow(0px 0px 3px rgba(165, 177, 202, 0.3)) drop-shadow(0px 10px 40px rgba(165, 177, 202, 0.3));
+}
+
+.menuWrapperTopLeft {
+
+}
+
+.menuWrapperTopRight {
+
+}
+
+.menuWrapperBottomLeft {
+
+}
+
+.menuWrapperBottomRight {
+
+}
+
+.menuItem {
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.menuItem:hover, .menuItem:focus-visible {
+    background-color: #eff2f7;
+}

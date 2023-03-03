@@ -1,5 +1,13 @@
 .wrapper {
-    background-color: #eff2f7;
+    /*background-color: #eff2f7;*/
     padding: 40px;
     min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
 }
