@@ -1,6 +1,17 @@
 # Тестовое Задание. Автор программы "Веб-разработчик”.
 
----
+## Запуск
+
+```bash
+npm ci
+npm start
+```
+
+## Пакеты
+
+* [reset-css](https://www.npmjs.com/package/reset-css) - обнуление стандартных стилей
+* [react-feather](https://www.npmjs.com/package/react-feather) - иконки
+
 
 ## Задание
 
@@ -34,14 +45,4 @@
 
 ![IMG_20210113_193017_888.png](https://praktikum.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F4640cdb2-1305-4170-9557-3acbed4f5ed1%2FIMG_20210113_193017_888.png?id=e1d6bf8e-bcfa-47b2-aeb9-5c08bbb422c2&table=block&spaceId=daa3be6d-804a-415d-9112-8c01fba24d73&width=2000&userId=&cache=v2)
 
-Сопроводите код инструкцией по запуску проекта в `[README.md](http://readme.md)` репозитория на GitHub.
-
----
-
-## Решение
-
-### Запуск
-
-```bash
-npm start
-```
+Сопроводите код инструкцией по запуску проекта в [README.md](./readme.md) репозитория на GitHub.
