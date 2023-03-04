@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/practicum-contest/static/css/main.4c0bcfa8.css",
+    "main.js": "/practicum-contest/static/js/main.5f17eb51.js",
+    "index.html": "/practicum-contest/index.html",
+    "main.4c0bcfa8.css.map": "/practicum-contest/static/css/main.4c0bcfa8.css.map",
+    "main.5f17eb51.js.map": "/practicum-contest/static/js/main.5f17eb51.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.4c0bcfa8.css",
+    "static/js/main.5f17eb51.js"
+  ]
+}
