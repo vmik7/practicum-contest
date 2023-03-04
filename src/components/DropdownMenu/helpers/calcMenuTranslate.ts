@@ -1,8 +1,12 @@
 import { RefObject } from 'react';
 
+import { getViewportRect } from '@/helpers/getViewportRect';
+import { getScrollTop } from '@/helpers/getScrollTop';
+
 type Result = { x: number; y: number };
 
 const defaultResult: Result = { x: 0, y: 0 };
+const gap = 5;
 
 export function calcMenuTranslate(
     triggerRef: RefObject<HTMLElement>,
@@ -12,14 +16,8 @@ export function calcMenuTranslate(
         return defaultResult;
     }
 
-    const vw = Math.max(
-        document.documentElement.clientWidth || 0,
-        window.innerWidth || 0,
-    );
-    const vh = Math.max(
-        document.documentElement.clientHeight || 0,
-        window.innerHeight || 0,
-    );
+    const { vh, vw } = getViewportRect();
+    const scrollTop = getScrollTop();
 
     const { x: triggerX, y: triggerY } =
         triggerRef.current.getBoundingClientRect();
@@ -35,7 +33,7 @@ export function calcMenuTranslate(
     const distToRight = vw - triggerX;
 
     if (
-        Math.max(distToTop, distToBottom) < menuHeight ||
+        Math.max(distToTop, distToBottom) < menuHeight + gap ||
         Math.max(distToLeft, distToRight) < menuWidth
     ) {
         return defaultResult;
@@ -46,9 +44,10 @@ export function calcMenuTranslate(
             ? triggerX + triggerWidth - menuWidth
             : triggerX;
     const y =
-        distToTop > distToBottom
-            ? triggerY - menuHeight
-            : triggerY + triggerHeight;
+        scrollTop +
+        (distToTop > distToBottom
+            ? triggerY - menuHeight - gap
+            : triggerY + triggerHeight + gap);
 
     return { x, y };
 }

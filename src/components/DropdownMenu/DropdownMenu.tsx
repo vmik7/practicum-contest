@@ -8,13 +8,12 @@ import React, {
     useState,
     RefAttributes,
     FunctionComponentElement,
-    useLayoutEffect,
 } from 'react';
 
-import { useOutsideClick } from '@/hooks/useOutsideClick/useOutsideClick';
+import { useOutsideClick } from '@/hooks/useOutsideClick';
+import { useOnlyOne } from '@/hooks/useOnlyOne';
 
-import { calcMenuTranslate } from './helpers/calcMenuTranslate';
-
+import { useMenuPosition } from './hooks/useMenuPosition';
 import styles from './DropdownMenu.module.css';
 
 export interface MenuItemType {
@@ -78,22 +77,17 @@ export const DropdownMenu: FC<DropdownMenuProps> = function DropdownMenu(
     const menuRef = useRef<HTMLDivElement>(null);
 
     const [menuOpened, setMenuOpened] = useState<boolean>(false);
-    const [menuXTranslate, setMenuXTranslate] = useState<number>(0);
-    const [menuYTranslate, setMenuYTranslate] = useState<number>(0);
-
     const openMenu = useCallback(() => setMenuOpened(true), []);
     const closeMenu = useCallback(() => setMenuOpened(false), []);
 
-    useLayoutEffect(() => {
-        if (menuOpened) {
-            const { x, y } = calcMenuTranslate(triggerRef, menuRef);
-
-            setMenuXTranslate(x);
-            setMenuYTranslate(y);
-        }
-    }, [menuOpened]);
+    const { menuXTranslate, menuYTranslate, triggerOutside } = useMenuPosition(
+        triggerRef,
+        menuRef,
+        menuOpened,
+    );
 
     useOutsideClick(menuRef, closeMenu);
+    useOnlyOne('menu-open', menuRef, menuOpened, closeMenu);
 
     const trigger = useMemo(
         () =>
@@ -106,7 +100,8 @@ export const DropdownMenu: FC<DropdownMenuProps> = function DropdownMenu(
     );
     const menu = useMemo(
         () =>
-            menuOpened && (
+            menuOpened &&
+            !triggerOutside && (
                 <div
                     ref={menuRef}
                     className={styles.menuWrapper}
@@ -123,7 +118,14 @@ export const DropdownMenu: FC<DropdownMenuProps> = function DropdownMenu(
                     ))}
                 </div>
             ),
-        [closeMenu, items, menuOpened, menuXTranslate, menuYTranslate],
+        [
+            closeMenu,
+            items,
+            menuOpened,
+            menuXTranslate,
+            menuYTranslate,
+            triggerOutside,
+        ],
     );
 
     return (
