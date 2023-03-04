@@ -8,6 +8,7 @@ import React, {
     useState,
     RefAttributes,
     FunctionComponentElement,
+    ReactNode,
 } from 'react';
 
 import { useOutsideClick } from '@/hooks/useOutsideClick';
@@ -19,25 +20,27 @@ import styles from './DropdownMenu.module.css';
 export interface MenuItemType {
     value: string;
     title: string;
-    onClick?: () => void;
+    addonRight?: ReactNode;
+    onSelect?: () => void;
 }
 
 interface MenuItemProps {
     item: MenuItemType;
-    onClick?: () => void;
+    onSelect?: () => void;
 }
 
 const MenuItem: FC<MenuItemProps> = function MenuItem(props) {
-    const { item, onClick } = props;
+    const { item, onSelect } = props;
 
     const onClickHandler = useCallback(() => {
-        onClick?.();
-        item.onClick?.();
-    }, [item, onClick]);
+        onSelect?.();
+        item.onSelect?.();
+    }, [item, onSelect]);
 
     return (
         <div className={styles.menuItem} onClick={onClickHandler}>
             {item.title}
+            {item.addonRight}
         </div>
     );
 };
@@ -113,7 +116,7 @@ export const DropdownMenu: FC<DropdownMenuProps> = function DropdownMenu(
                         <MenuItem
                             item={item}
                             key={item.value}
-                            onClick={closeMenu}
+                            onSelect={closeMenu}
                         />
                     ))}
                 </div>

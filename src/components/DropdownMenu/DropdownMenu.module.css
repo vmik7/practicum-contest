@@ -10,25 +10,13 @@
     filter: drop-shadow(0px 0px 3px rgba(165, 177, 202, 0.3)) drop-shadow(0px 10px 40px rgba(165, 177, 202, 0.3));
 }
 
-.menuWrapperTopLeft {
-
-}
-
-.menuWrapperTopRight {
-
-}
-
-.menuWrapperBottomLeft {
-
-}
-
-.menuWrapperBottomRight {
-
-}
-
 .menuItem {
     padding: 10px 20px;
     cursor: pointer;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .menuItem:hover, .menuItem:focus-visible {
